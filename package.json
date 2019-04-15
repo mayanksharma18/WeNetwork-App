@@ -1,25 +1,21 @@
 {
-  "name": "wenetwork-app",
-  "version": "1.0.0",
-  "description": "social networking app",
-  "main": "main.js",
+  "name": "wenetwork",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon main.js"
+    "start": "nodemon ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mayanksharma18/WeNetwork-App.git"
-  },
-  "author": "Mayank",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mayanksharma18/WeNetwork-App/issues"
-  },
-  "homepage": "https://github.com/mayanksharma18/WeNetwork-App#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "mongoose": "^5.5.1",
+    "mongose": "0.0.2-security",
+    "morgan": "~1.9.0",
     "nodemon": "^1.18.11"
   }
 }
