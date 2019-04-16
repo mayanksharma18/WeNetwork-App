@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var app = express();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -8,8 +9,25 @@ var indexRouter = require('./routes/index');
 var LoginRouter = require('./routes/Login');
 var RegisterRouter = require('./routes/register');
 
+const db = require('./models')
+//-----------------------------
+const passport = require('passport');
+const LocalStrategy = require("passport-local")
+const flash        = require("connect-flash")
 
-var app = express();
+const session = require("express-session")
+// PASSPORT CONFIGURATION
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 // view engine setup
 var ejs=require('ejs');
@@ -21,6 +39,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 app.use('/', indexRouter);
 app.use('/', LoginRouter);

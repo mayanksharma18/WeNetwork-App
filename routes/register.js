@@ -9,9 +9,12 @@ router.get('/register',(req,res)=>{
 
 router.post('/register',(req,res)=>{
    console.log(req.body) ;
- db.Register.create(req.body);
- res.redirect("/");
+  db.Register.create(req.body);
+  res.redirect("/");
 })
+
+
+
 
 
 module.exports = router;
