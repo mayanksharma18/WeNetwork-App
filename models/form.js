@@ -10,7 +10,14 @@ wanna:String,
 atAge:Number
 })
 
-var Form=mongoose.model('Form',form);
+var register=new Schema({
+    userName:String,
+    email:String,
+    password:String
+})
 
+var Form=mongoose.model('Form',form);
+var Register=mongoose.model('Register',register)
 
 module.exports=Form;
+module.exports=Register;

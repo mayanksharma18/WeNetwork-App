@@ -15,5 +15,15 @@ router.get('/search',(req,res)=>{
   res.render('search')
 })
 
+router.get('/results/',(req,res)=>{
+ const query=req.search.
+ console.log(query)
+ db.Form.find({wanna:query})
+.then((data)=>res.send(data))
+.catch((err)=>res.send(err))
+})
+
+
+
 
 module.exports = router;
