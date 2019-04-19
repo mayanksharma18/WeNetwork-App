@@ -1,15 +1,22 @@
 const mongoose = require('mongoose');
 
-const passportLocalMongoose = require('passport-local-mongoose');
-
 var Schema=mongoose.Schema;
 var register=new Schema({
-    username:String,
-    email:String,
-    password:String
-})
+    username:{
+    type:String,
+    required:true
+    },
+    email:{
+    type:String,
+    required:true
+    },
+    password:{
+    type:String,
+    required:true
+}
+}
+)
 
-register.plugin(passportLocalMongoose);
 
 var Register=mongoose.model('Register',register)
 

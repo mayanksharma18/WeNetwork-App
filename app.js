@@ -9,25 +9,21 @@ var indexRouter = require('./routes/index');
 var LoginRouter = require('./routes/Login');
 var RegisterRouter = require('./routes/register');
 
-const db = require('./models')
+const db=require('./models')
 //-----------------------------
 const passport = require('passport');
-const LocalStrategy = require("passport-local")
+var LocalStrategy = require('passport-local').Strategy;
 const flash        = require("connect-flash")
 
 const session = require("express-session")
-// PASSPORT CONFIGURATION
-app.use(require('express-session')({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+// // PASSPORT CONFIGURATION
 
 
+// Configure passport-local to use account model for authentication
 
+passport.use(new LocalStrategy(db.Register.authenticate()));
+passport.serializeUser(db.Register.serializeUser());
+passport.deserializeUser(db.Register.deserializeUser());
 
 // view engine setup
 var ejs=require('ejs');
@@ -43,8 +39,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', indexRouter);
-app.use('/', LoginRouter);
-app.use('/', RegisterRouter);
+// app.use('/', LoginRouter);
+
+app.use('/register', RegisterRouter);
+
+app.use('/login',LoginRouter)
 
 
 
@@ -66,3 +65,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
+
